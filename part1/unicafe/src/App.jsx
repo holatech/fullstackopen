@@ -81,7 +81,7 @@ const App = () => {
       <p>bad {bad} </p>
       <p>all {all} </p>
       <p>average {average}</p>
-      <p>positive {positive}</p>
+      <p>positive {positive} %</p>
     </div>
   )
 }
