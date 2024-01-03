@@ -28,16 +28,16 @@ const Statistics = (props) => {
   const positive = props.positive
 
   return(
-    <div>
-      <table >
+    <>
+      <tbody >
         <StatisticLine text="good" value ={good} />
         <StatisticLine text="neutral" value ={neutral} />
         <StatisticLine text="bad" value ={bad} />
         <StatisticLine text="all" value ={all} />
         <StatisticLine text="average" value ={average} />
         <StatisticLine text="positive" value ={positive} />
-      </table>
-    </div>
+      </tbody>
+    </>
   )
 }
 
@@ -116,8 +116,11 @@ const App = () => {
       <h2>statistics</h2>
       
       {all==0
-      ? <p>No feedback given</p>
-      : <Statistics good = {good} neutral = {neutral} bad = {bad} all = {all} average = {average} positive = {positive} />}
+        ? <p>No feedback given</p>
+        : <table>
+            <Statistics good = {good} neutral = {neutral} bad = {bad} all = {all} average = {average} positive = {positive} />
+          </table>
+      }
 
     </div>
   )
