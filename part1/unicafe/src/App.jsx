@@ -65,21 +65,19 @@ const App = () => {
   }
 
   const handleBadClick = () => {
-     const updatedBad = bad + 1
-     setBad(updatedBad)
+    const updatedBad = bad + 1
+    setBad(updatedBad)
 
-     const updatedAll = good + neutral + updatedBad
-     setAll(updatedAll)
+    const updatedAll = good + neutral + updatedBad
+    setAll(updatedAll)
 
-     const calculatedAverage = (good - updatedBad)/updatedAll
-     setAverage(calculatedAverage)
+    const calculatedAverage = (good - updatedBad)/updatedAll
+    setAverage(calculatedAverage)
 
-     const calculatedPositive = (good/updatedAll)*100
-     setPositive(calculatedPositive)
-
-
-    }
-
+    const calculatedPositive = (good/updatedAll)*100
+    setPositive(calculatedPositive)
+  }
+  
   return (
     <div>
       <h2>give feedback</h2>
@@ -89,8 +87,11 @@ const App = () => {
       <Button onClick={handleBadClick} text = 'bad' />
       
       <h2>statistics</h2>
+      
+      {all==0
+      ? <p>No feedback given</p>
+      : <Statistics good = {good} neutral = {neutral} bad = {bad} all = {all} average = {average} positive = {positive} />}
 
-      <Statistics good = {good} neutral = {neutral} bad = {bad} all = {all} average = {average} positive = {positive} />
     </div>
   )
 }
