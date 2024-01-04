@@ -26,7 +26,9 @@ const App = () => {
  
   //save each vote
   const [votes, setVotes] = useState(generatedArray)
-  const handleNextAnecdotesClick = () => {
+  const highestVotes = Math.max(...votes)
+
+  const handleNextAnecdoteClick = () => {
     const randomNumber = Math.floor(Math.random()*anecdotes.length)
     setSelected(randomNumber)
   }
@@ -35,7 +37,7 @@ const App = () => {
     // copy vote array into points
     const points = [...votes]
 
-    // increase the number of votes for each anecdote
+    // increase the number of votes for selected anecdote by 1
     points[selected] += 1
     
     // set vote array with the updated list of each anecdote vote
@@ -45,10 +47,23 @@ const App = () => {
 
   return (
     <div>
+      <h2>Anecdote of the day</h2>
+     
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
       <Button onClick={handleVoteClick} text='vote' />
-      <Button onClick={handleNextAnecdotesClick} text='next anecdote' />
+      <Button onClick={handleNextAnecdoteClick} text='next anecdote' />
+      
+      <h2>Anecdote with most votes</h2>
+
+      {highestVotes == 0
+      ? <p>No votes recorded yet</p>
+      :
+        <> 
+          <p>{anecdotes[votes.indexOf(highestVotes)]}</p>
+          <p>has {votes[votes.indexOf(highestVotes)]} votes</p>
+        </>
+      }
 
     </div>
   )
