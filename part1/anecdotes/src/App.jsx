@@ -20,16 +20,36 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
-
+  
+  // generate an array of zeros to initialize votes for each anecdote
+  const generatedArray = new Array(anecdotes.length+1).join('0').split('').map(parseFloat)
+ 
+  //save each vote
+  const [votes, setVotes] = useState(generatedArray)
   const handleNextAnecdotesClick = () => {
     const randomNumber = Math.floor(Math.random()*anecdotes.length)
     setSelected(randomNumber)
   }
 
+  const handleVoteClick = () => {
+    // copy vote array into points
+    const points = [...votes]
+
+    // increase the number of votes for each anecdote
+    points[selected] += 1
+    
+    // set vote array with the updated list of each anecdote vote
+    setVotes(points)
+
+  }
+
   return (
     <div>
       <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
+      <Button onClick={handleVoteClick} text='vote' />
       <Button onClick={handleNextAnecdotesClick} text='next anecdote' />
+
     </div>
   )
 }
